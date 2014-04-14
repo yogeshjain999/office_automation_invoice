@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title OfficeAutomationInvoice
+    = stylesheet_link_tag    "office_automation_invoice/application", media: "all"
+    = javascript_include_tag "office_automation_invoice/application"
+    = csrf_meta_tags
+  %body
+    = yield
