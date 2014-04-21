@@ -1,0 +1,46 @@
+.form-group
+  %table.table.table-hover.table-bordered
+    %thead
+      %tr
+        %th Srn
+        %th 
+          %center Description
+        %th Amount
+    %tbody#items
+      = invoice.fields_for :items, wrapper: false do |i|
+        %tr.fields
+          %td.col-md-1= i.input :srn, label: false, input_html: { class: 'form-control input-sm' }
+          %td.col-md-9= i.input :description, label: false, input_html: { class: 'form-control' }
+          %td= i.input :amount, label: false, input_html: { class: 'form-control' }
+          %td= i.link_to_remove content_tag(:span, '', class: 'glyphicon glyphicon-remove'), class: 'btn btn-danger btn-xs'
+  = invoice.link_to_add 'Add more', :items, class: 'btn btn-info btn-xs', data: { target: '#items' }
+
+    
+  .form-group
+    .row
+      .col-md-9
+        %strong.pull-right Tax
+      .col-md-3
+        = invoice.association :taxes, as: :check_boxes, label: false
+
+  .form-group
+    .row
+      .col-md-9
+        %strong.pull-right Discount
+      .col-md-2
+        .input-group
+          = invoice.input :discount, input_html: { class: 'form-control' }, label: false
+          %span.input-group-addon %
+
+  .form-group
+    .row
+      .col-md-9
+        %strong.pull-right Total
+      .col-md-3
+        .input-group
+          .input-group-addon $
+          
+          = invoice.input :total_amount, input_html: { class: 'form-control', readonly: true, align: 'left' }, label: false
+          .input-group-btn
+            = button_tag class: 'btn btn-info', data: { disable_with: "<span class='glyphicon glyphicon-refresh'>" } do
+              %span.glyphicon.glyphicon-repeat

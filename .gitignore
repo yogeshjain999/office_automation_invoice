@@ -1,6 +1,7 @@
 .bundle/
 .rspec
 .rvmrc
+client.p12
 Gemfile.lock
 README.rdoc
 coverage/
