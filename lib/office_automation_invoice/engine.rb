@@ -1,3 +1,5 @@
+require 'google/api_client'
+
 module OfficeAutomationInvoice
   class Engine < ::Rails::Engine
     isolate_namespace OfficeAutomationInvoice

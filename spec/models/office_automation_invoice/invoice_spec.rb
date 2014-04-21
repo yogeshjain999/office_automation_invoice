@@ -56,19 +56,20 @@ module OfficeAutomationInvoice
 
     context '#set_schedule' do
       xit 'sets schedule to 1 week after project start date' do 
-        invoice = create(:invoice, schedule_period: [1, 'w'])
       end
 
-      xit 'cancels schedule if schedule_period is empty' do
-        invoice = create(:invoice, schedule_period: [1, 'w'])
-        invoice.update_attribute :schedule_period, [] 
+      xit 'sets schedule_date to next schedule' do        
       end
-    end
 
-    context '#edit_schedule' do
-      xit 'sets schedule to 1 month instead of 1 week after scheduled date' do
-        invoice = create(:invoice, schedule_period: [1, 'w'])
-        invoice.update_attribute :schedule_period, [1, 'm']
+      it 'cancels schedule if schedule_period is empty' do
+        invoice = create(:invoice, schedule_date: Date.current)
+        invoice.schedule_period = []
+        invoice.set_schedule
+
+        expect(invoice.reload.schedule_date).to be_nil
+      end
+
+      xit 'sets schedule_period to 1 month instead of 1 week after scheduled date' do
       end
     end
   end

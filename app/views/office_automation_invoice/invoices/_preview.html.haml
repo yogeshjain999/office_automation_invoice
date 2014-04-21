@@ -1,0 +1,97 @@
+.container-fluid#preview_container
+  %center= content_tag(:h3, 'Invoice')
+  .row
+    .col-md-6
+      %address
+        %strong Josh Software
+        %br
+        5-A, Sunflower apt, Baner<br>
+        Pune, Maharashtra, <br>
+        India, 4110020
+    .col-md-6
+      .pull-right= image_tag 'office_automation_invoice/logo.svg', class: 'img-thumbnail', size: '100x100'
+  %hr
+  .row
+    .col-md-8
+      %address
+        %strong To, <br>
+        %strong Client
+        %br
+        123, Client apt, <br>
+        Pune, Maharashtra, <br>
+        India, 411020
+    
+    .col-md-4
+      .form-group
+        .row
+          .col-md-7
+            .pull-right
+              %strong Invoice :
+          .col-md-5
+            .pull-right
+              %strong= "##{@invoice.number}"
+      .form-group
+        .row
+          .col-md-7
+            .pull-right
+              %strong Issue Date :
+          .col-md-5
+            .pull-right
+              %strong= @invoice.issue_date.strftime('%d %b %Y')
+      .form-group
+        .row
+          .col-md-7
+            .pull-right
+              %strong Due Date :
+          .col-md-5
+            .pull-right
+              %strong= @invoice.due_date.strftime('%d %b %Y')
+
+  %br
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Srn
+        %th
+          %center Description
+        %th Amount
+    %tbody
+      - @invoice.items.each do |i|
+        %tr
+          %td.col-md-1= i.srn
+          %td.col-md-9
+            %center= i.description
+          %td= i.amount
+
+  %hr
+  .form-group
+    .row
+      .col-md-7
+        %strong Note
+        %br= @invoice.note
+      .col-md-5
+        .form-group
+          - unless @invoice.discount.zero?
+            .row
+              .col-md-7
+                .pull-right
+                  %strong= "Discount @ #{@invoice.discount}%"
+              .col-md-5
+                %strong= "$ #{(@invoice.discount * @invoice.sub_total) / 100}"
+
+        .form-group
+          - if @invoice.taxes.present?
+            - @invoice.taxes.each do |t|
+              .row
+                .col-md-7
+                  .pull-right
+                    %strong= "#{t.name} @ #{t.value}%"
+                .col-md-5
+                  %strong= "$ #{(t.value * @invoice.sub_total) / 100}"
+        .form-group
+          .row
+            .col-md-7
+              .pull-right
+                %strong Total
+            .col-md-5
+              %strong= "$ #{@invoice.total_amount}"

@@ -1,0 +1,52 @@
+.row
+  .col-md-1
+  .col-md-10
+    = render 'office_automation_invoice/shared/flash'
+    .panel.panel-default  
+      .panel-heading
+        %strong Create Invoice
+      
+      .panel-body
+        = simple_nested_form_for(@invoice, remote: true, input_html: { role: :form} ) do |f|
+          .form-group
+            .row
+              .col-md-2
+                .input-group{ 'data-no-turbolink' => true }
+                  = f.input :schedule_period, input_html: { class: 'form-control input-sm' }, label: false
+                  = f.input :schedule_type, as: :hidden, input_html: { value: 'Weekly' } 
+                  
+                  .input-group-btn#period_group
+                    %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { toggle: 'dropdown' } }
+                      Weekly
+                      %span.caret
+                    %ul.dropdown-menu.pull-right
+                      %li 
+                        = link_to 'Daily' , '#'
+                      %li 
+                        = link_to 'Weekly', '#'
+                      %li 
+                        = link_to 'Monthly', '#'
+                      %li 
+                        = link_to 'Yearly', '#'
+
+              .col-md-4
+              
+              .col-md-3
+                .input-group
+                  = f.input :issue_date, label: false, input_html: { class: 'form-control input-sm', placeholder: "Select issue Date", readonly: true, data: { provide: 'datepicker', 'date-format' => 'dd/mm/yyyy' } }, required: false , error: false
+                  %span.input-group-addon.glyphicon.glyphicon-calendar
+                    
+                .has-error= f.error :issue_date
+            
+              .col-md-3
+                .input-group
+                  = f.input :due_date, label: false, input_html: { class: 'form-control input-sm', placeholder: "Select due Date", readonly: true, data: { provide: 'datepicker', 'date-format' => 'dd/mm/yyyy' } }, required: false, error: false
+                  %span.input-group-addon.glyphicon.glyphicon-calendar
+                    
+                .has-error= f.error :due_date
+
+          = render partial: 'office_automation_invoice/invoices/item_table', locals: { invoice: f }
+
+          .form-group
+            = f.submit class: 'btn btn-primary', data: { disable_with: "Please wait..." }
+            = button_tag 'Preview', class: 'btn btn-info', value: :preview
