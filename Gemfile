@@ -3,7 +3,10 @@ source "https://rubygems.org"
 gemspec
 
 gem 'mongoid', github: 'mongoid/mongoid'
+#gem 'whenever', require: false
+#gem 'omniauth-google-oauth2'
 gem 'google-api-client', require: 'google/api_client'
+#gem 'sidekiq'
 gem 'therubyracer'
 gem 'coffee-rails'
 gem 'jquery-rails'
