@@ -33,32 +33,20 @@
               
               .col-md-3
                 .input-group
-<<<<<<< HEAD
                   = f.input :issue_date, label: false, input_html: { class: 'form-control input-sm', placeholder: "Select issue Date", readonly: true, data: { provide: 'datepicker', 'date-format' => 'dd/mm/yyyy' } }, required: false , error: false
-=======
-                  = f.input :issue_date, label: false, input_html: { class: 'form-control input-sm', placeholder: "Select issue Date", readonly: true, data: { provide: 'datepicker', 'date-format' => 'dd/mm/yyyy' } }, error: false
->>>>>>> 2818e9543e26ad51c5c28fb9eb1ef342794bb9e1
                   %span.input-group-addon.glyphicon.glyphicon-calendar
                     
                 .has-error= f.error :issue_date
             
               .col-md-3
                 .input-group
-<<<<<<< HEAD
                   = f.input :due_date, label: false, input_html: { class: 'form-control input-sm', placeholder: "Select due Date", readonly: true, data: { provide: 'datepicker', 'date-format' => 'dd/mm/yyyy' } }, required: false, error: false
-=======
-                  = f.input :due_date, label: false, input_html: { class: 'form-control input-sm', placeholder: "Select due Date", readonly: true, data: { provide: 'datepicker', 'date-format' => 'dd/mm/yyyy' } }, error: false
->>>>>>> 2818e9543e26ad51c5c28fb9eb1ef342794bb9e1
                   %span.input-group-addon.glyphicon.glyphicon-calendar
                     
                 .has-error= f.error :due_date
 
           = render partial: 'office_automation_invoice/invoices/item_table', locals: { invoice: f }
 
-<<<<<<< HEAD
           .form-group
             = f.submit class: 'btn btn-primary', data: { disable_with: "Please wait..." }
             = button_tag 'Preview', class: 'btn btn-info', value: :preview
-=======
-          .form-group= f.submit class: 'btn btn-primary', data: { disable_with: "Please wait..." }
->>>>>>> 2818e9543e26ad51c5c28fb9eb1ef342794bb9e1

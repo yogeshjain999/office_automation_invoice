@@ -1,3 +1,2 @@
-class OfficeAutomationInvoice::ApplicationController < OfficeAutomationEmployee::ApplicationController
-  layout 'office_automation_employee/application'
+class OfficeAutomationInvoice::ApplicationController < ApplicationController
 end

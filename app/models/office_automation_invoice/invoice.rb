@@ -68,8 +68,8 @@ module OfficeAutomationInvoice
       {
         summary: "Invoice",
         start: { date: issue_date.to_s },
-    end: { date: due_date.to_s },
-    recurrence: ["RRULE:FREQ=#{ schedule_type.upcase };UNTIL=#{ due_date.strftime('%Y%m%dT%H%M%SZ') };INTERVAL=#{ schedule_period };"]
+        end: { date: issue_date.to_s },
+        recurrence: ["RRULE:FREQ=#{ schedule_type.upcase };UNTIL=#{ due_date.strftime('%Y%m%dT%H%M%SZ') };INTERVAL=#{ schedule_period };"]
       }
   end
 
